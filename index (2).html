@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anime House | أنمي هاوس — العمرانية، الجيزة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Poppins:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #ff9900;
+    --orange-light: #ffb84d;
+    --deep: #14100a;
+    --dark: #1e1810;
+    --card: #282014;
+    --line: #453619;
+    --cream: #fff8ee;
+    --muted: #c9b898;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Cairo', 'Poppins', sans-serif; background: var(--deep); color: var(--cream); line-height: 1.7; }
+  a { color: inherit; text-decoration: none; }
+  .en { font-family: 'Poppins', sans-serif; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: .6rem 5%;
+    background: rgba(20,16,10,.95); backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--orange);
+  }
+  .brand { display: flex; align-items: center; gap: .7rem; }
+  .brand img { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--orange); }
+  .brand-text { font-family: 'Poppins'; font-weight: 900; font-size: 1.1rem; letter-spacing: 2px; color: var(--cream); line-height: 1.15; }
+  .brand-text b { color: var(--orange); font-weight: 900; }
+  .brand-text small { display: block; font-family: 'Cairo'; font-size: .68rem; color: var(--muted); font-weight: 600; letter-spacing: 0; }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
+  .nav-links a { color: var(--muted); font-size: .95rem; font-weight: 700; transition: color .2s; }
+  .nav-links a:hover { color: var(--orange); }
+  .btn {
+    display: inline-block; padding: .6rem 1.6rem; border-radius: 40px;
+    background: var(--orange); color: #1a1207; font-weight: 800;
+    border: none; cursor: pointer; font-size: .95rem; font-family: 'Cairo';
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255,153,0,.35); }
+  .btn-ghost { background: transparent; border: 2px solid var(--orange); color: var(--orange); }
+  .hamburger { display: none; font-size: 1.6rem; background: none; border: none; color: var(--orange); cursor: pointer; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 90vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    padding: 3rem 1.5rem; position: relative; overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255,153,0,.16), transparent 55%),
+      radial-gradient(circle at 10% 90%, rgba(255,80,0,.08), transparent 45%),
+      var(--deep);
+  }
+  .hero-logo {
+    width: min(200px, 52vw); border-radius: 50%;
+    border: 4px solid var(--orange);
+    box-shadow: 0 0 45px rgba(255,153,0,.3);
+    animation: glow 3s ease-in-out infinite alternate;
+  }
+  @keyframes glow { from { box-shadow: 0 0 20px rgba(255,153,0,.2); } to { box-shadow: 0 0 55px rgba(255,153,0,.45); } }
+  .hero-title {
+    font-family: 'Poppins'; font-size: clamp(2rem, 5.5vw, 3.2rem);
+    font-weight: 900; letter-spacing: 5px; margin-top: 1.4rem; color: var(--cream);
+    text-shadow: 0 0 30px rgba(255,153,0,.25);
+  }
+  .hero-title b { color: var(--orange); }
+  .hero-tag { font-size: clamp(1.15rem, 2.8vw, 1.5rem); color: var(--orange-light); font-weight: 800; margin-top: .2rem; }
+  .rating-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--card); border: 1px solid var(--line);
+    padding: .45rem 1.2rem; border-radius: 40px; margin-top: 1.1rem;
+    font-weight: 800; color: var(--orange); font-size: 1.05rem;
+  }
+  .rating-badge span { color: var(--muted); font-weight: 600; font-size: .85rem; }
+  .hero p { color: var(--muted); max-width: 620px; margin: 1.2rem 0 2rem; font-size: 1.05rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+  /* ===== STRIP ===== */
+  .strip {
+    background: var(--orange); color: #1a1207; font-weight: 800;
+    display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap;
+    padding: .85rem 5%; font-size: .92rem;
+  }
+
+  section { padding: 4rem 5%; }
+  .section-title { font-size: 1.9rem; margin-bottom: .3rem; font-weight: 900; }
+  .section-title b { color: var(--orange); }
+  .section-sub { color: var(--muted); margin-bottom: 2.5rem; }
+
+  /* ===== PRODUCTS ===== */
+  .products { background: var(--dark); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 18px;
+    overflow: hidden; transition: transform .25s, border-color .25s;
+  }
+  .card:hover { transform: translateY(-8px); border-color: var(--orange); }
+  .card-art {
+    height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3.6rem;
+    background: linear-gradient(135deg, rgba(255,153,0,.22), rgba(255,80,0,.12)), var(--card);
+  }
+  .card-body { padding: 1.3rem; }
+  .card-body h3 { color: var(--orange); font-size: 1.08rem; font-weight: 800; }
+  .card-body .en { color: var(--muted); font-size: .8rem; display: block; letter-spacing: .5px; }
+  .card-body p { color: var(--muted); font-size: .9rem; margin-top: .5rem; }
+  .tag {
+    display: inline-block; font-size: .72rem; font-weight: 800;
+    background: rgba(255,153,0,.15); color: var(--orange);
+    padding: .2rem .8rem; border-radius: 20px; margin-top: .8rem;
+  }
+
+  /* ===== SAFETY ===== */
+  .safety {
+    background: linear-gradient(135deg, #282014, #14100a);
+    border: 2px dashed var(--orange); border-radius: 20px;
+    padding: 2.4rem; text-align: center;
+  }
+  .safety h2 { color: var(--orange); margin-bottom: .8rem; font-size: 1.45rem; }
+  .safety p { max-width: 720px; margin: 0 auto; }
+  .safety .en { display: block; margin-top: .7rem; color: var(--muted); font-size: .92rem; }
+
+  /* ===== REVIEWS ===== */
+  .reviews { background: var(--dark); }
+  .review-card { padding: 1.8rem; position: relative; }
+  .stars { color: var(--orange); font-size: 1.1rem; letter-spacing: 2px; margin-bottom: .6rem; }
+  .review-card p { color: var(--cream); font-size: .98rem; font-style: normal; }
+  .reviewer { display: flex; align-items: center; gap: .7rem; margin-top: 1.1rem; }
+  .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--orange), #ff5500);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; color: #1a1207; font-size: 1.05rem;
+  }
+  .reviewer .name { font-weight: 800; font-size: .95rem; }
+  .reviewer .meta { color: var(--muted); font-size: .78rem; }
+
+  /* ===== LOCATION ===== */
+  .location { text-align: center; }
+  .location-card {
+    max-width: 620px; margin: 0 auto; background: var(--card);
+    border: 1px solid var(--line); border-radius: 20px; padding: 2.4rem;
+  }
+  .location-card .pin { font-size: 2.8rem; }
+  .location-card h3 { color: var(--orange); font-size: 1.35rem; margin: .4rem 0; }
+  .location-card p { color: var(--muted); }
+  .plus-code {
+    display: inline-block; margin-top: 1rem; padding: .4rem 1rem;
+    background: var(--deep); border: 1px dashed var(--orange);
+    color: var(--orange); border-radius: 10px; font-weight: 800; letter-spacing: 1px;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact { background: var(--dark); text-align: center; }
+
+  /* ===== WHATSAPP FLOAT ===== */
+  .wa-float {
+    position: fixed; bottom: 20px; left: 20px; z-index: 200;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25d366; display: flex; align-items: center; justify-content: center;
+    font-size: 1.7rem; box-shadow: 0 6px 20px rgba(0,0,0,.4);
+    transition: transform .2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 2.5rem 5% 2rem; border-top: 2px solid var(--orange);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1.6rem;
+    color: var(--muted); font-size: .88rem;
+  }
+  footer .brand img { width: 38px; height: 38px; }
+  .socials a { margin-left: 1rem; color: var(--muted); font-weight: 700; }
+  .socials a:hover { color: var(--orange); }
+
+  @media (max-width: 760px) {
+    .nav-links {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; background: var(--deep);
+      padding: 1.3rem 5%; gap: 1rem; border-bottom: 2px solid var(--orange); align-items: flex-start;
+    }
+    .nav-links.open { display: flex; }
+    .hamburger { display: block; }
+    .strip { gap: .8rem 1.6rem; font-size: .84rem; }
+  }
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="brand">
+    <img src="anime-house-logo.jpg" alt="Anime House Logo">
+    <div class="brand-text en">ANIME <b>HOUSE</b><small>أنمي هاوس · العمرانية، الجيزة</small></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">الرئيسية</a></li>
+    <li><a href="#products">المنتجات</a></li>
+    <li><a href="#safety">الأمان</a></li>
+    <li><a href="#reviews">التقييمات</a></li>
+    <li><a href="#location">الموقع</a></li>
+    <li><a href="#contact">تواصل معنا</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="home">
+  <img class="hero-logo" src="anime-house-logo.jpg" alt="Anime House">
+  <h1 class="hero-title en">ANIME <b>HOUSE</b></h1>
+  <div class="hero-tag">بيت الأوتاكو في العمرانية 🏮</div>
+  <div class="rating-badge">⭐ 4.7 <span>· 61 تقييم على Google Maps</span></div>
+  <p>سيوف أنمي ديكورية آمنة، شوبستيكس، شنط، ستيكرز، وباكدجات أنمي — كل اللي محتاجه أي أوتاكو في مكان واحد، وأسعار معقولة!</p>
+  <div class="hero-btns">
+    <a href="#products" class="btn">تصفح المنتجات 🛒</a>
+    <a href="#contact" class="btn btn-ghost">اطلب على واتساب</a>
+  </div>
+</header>
+
+<!-- ===== STRIP ===== -->
+<div class="strip">
+  <span>🚚 شحن لجميع المحافظات</span>
+  <span>💵 أسعار معقولة</span>
+  <span>⚔️ سيوف ديكورية آمنة</span>
+  <span>⭐ تقييم 4.7 على جوجل</span>
+</div>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="products" id="products">
+  <h2 class="section-title">منتجاتنا <b>· Products</b></h2>
+  <p class="section-sub">اختار من تشكيلتنا المميزة</p>
+  <div class="grid">
+    <div class="card">
+      <div class="card-art">⚔️</div>
+      <div class="card-body">
+        <h3>سيوف الأنمي الديكورية</h3>
+        <span class="en">DECORATIVE ANIME SWORDS</span>
+        <p>سيوف مشهورة من أنميات زي ون بيس وناروتو وديمون سلاير — ديكورية وآمنة تماماً.</p>
+        <span class="tag">⭐ الأكثر مبيعاً</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-art">🥢</div>
+      <div class="card-body">
+        <h3>شوبستيكس (عيدان أكل)</h3>
+        <span class="en">ANIME CHOPSTICKS</span>
+        <p>عيدان أكل بشخصيات الأنمي المفضلة عندك — أصلية وممتازة للهدايا.</p>
+        <span class="tag">🎁 مثالية للهدايا</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-art">🎒</div>
+      <div class="card-body">
+        <h3>شنط وحقائب</h3>
+        <span class="en">BAGS & BACKPACKS</span>
+        <p>شنط ظهر وكروس بشخصيات الأنمي، عملية وبتكمل لوك الأوتاكو بتاعك.</p>
+        <span class="tag">🔥 تصميمات حصرية</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-art">✨</div>
+      <div class="card-body">
+        <h3>ستيكرز أنمي</h3>
+        <span class="en">ANIME STICKERS</span>
+        <p>ستيكرز متنوعة لشخصيات الأنمي — للابتوب والموبايل والنوتس.</p>
+        <span class="tag">💰 أسعار رمزية</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-art">📦</div>
+      <div class="card-body">
+        <h3>باكدجات الأنمي</h3>
+        <span class="en">ANIME PACKS</span>
+        <p>بوكسات مفاجئة تجمع سيف + ستيكرز + هدايا أنمي بسعر خاص.</p>
+        <span class="tag">🎉 توفير كبير</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-art">🎴</div>
+      <div class="card-body">
+        <h3>إكسسوارات تانية</h3>
+        <span class="en">MORE ACCESSORIES</span>
+        <p>ميداليات، بوسترات، مجسمات، وكل حاجة أنمي تانية كتير!</p>
+        <span class="tag">➕ جديد باستمرار</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SAFETY ===== -->
+<section id="safety">
+  <div class="safety">
+    <h2>⚠️ سيوفنا ديكورية 100% وغير حادة</h2>
+    <p>صالحة للعرض والتصوير والكوسبلاي — آمنة تماماً ومسموح بها قانوناً كديكور ✅</p>
+    <span class="en">All our swords are decorative collectibles — NOT real steel, NOT sharp. Perfect for display, cosplay photos and gifts.</span>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews" id="reviews">
+  <h2 class="section-title">عملائنا <b>بيقولوا إيه؟</b></h2>
+  <p class="section-sub">⭐ 4.7 من 5 — بناءً على 61 تقييم حقيقي على Google Maps</p>
+  <div class="grid">
+    <div class="card review-card">
+      <div class="stars">★★★★★</div>
+      <p>"المكان حلو جدااا، المعاملة في منتهى الاحترام، بجد المكان هايل لأي أوتاكو 🙂"</p>
+      <div class="reviewer">
+        <div class="avatar">ح</div>
+        <div><div class="name">Hamza Eyad</div><div class="meta">منذ 6 أشهر · Google Maps</div></div>
+      </div>
+    </div>
+    <div class="card review-card">
+      <div class="stars">★★★★★</div>
+      <p>"المكان فيه منتجات كتير جداً وأسعار معقولة 👌"</p>
+      <div class="reviewer">
+        <div class="avatar">A</div>
+        <div><div class="name">Ahmed Hesham</div><div class="meta">منذ 7 أشهر · Google Maps</div></div>
+      </div>
+    </div>
+    <div class="card review-card">
+      <div class="stars">★★★★★</div>
+      <p>"مكان ممتاز لكل عشاق الأنمي — مستوى خدمة عالي ومنتجات مميزة ❤️"</p>
+      <div class="reviewer">
+        <div class="avatar">★</div>
+        <div><div class="name">تقييمات عملائنا</div><div class="meta">4.7 من 5 · 61 تقييم</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section class="location" id="location">
+  <h2 class="section-title">فين <b>تلااقينا؟</b></h2>
+  <p class="section-sub">مستنينك في البيت!</p>
+  <div class="location-card">
+    <div class="pin">📍</div>
+    <h3>شارع الملك فيصل، العمرانية الغربية، الجيزة</h3>
+    <p>King Faisal St., El Omraniya, Giza — متاح شحن لجميع المحافظات 🚚</p>
+    <div class="plus-code en">254P+V4F</div>
+    <p style="margin-top:1.2rem;"><a href="https://maps.google.com/?q=254P%2BV4F+King+Faisal+El+Omraniya+Giza" target="_blank" class="btn">افتح على خرائط جوجل 🗺️</a></p>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+  <h2 class="section-title">اطلب <b>دلوقتي</b> 🛒</h2>
+  <p class="section-sub">ابعتلنا على واتساب وهنرد عليك في أسرع وقت</p>
+  <a href="https://wa.me/2010XXXXXXXX" class="btn" style="font-size:1.05rem; padding:.85rem 2.2rem;">💬 كلمنا واتساب</a>
+  <p style="color:var(--muted); margin-top:1.1rem; font-size:.85rem;">⭐ 4.7 · 61 تقييم على Google Maps</p>
+</section>
+
+<!-- ===== WHATSAPP FLOAT ===== -->
+<a href="https://wa.me/20 10 92769278" class="wa-float" aria-label="WhatsApp">💬</a>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="brand">
+    <img src="anime-house-logo.jpg" alt="Anime House">
+    <div>
+      <div class="brand-text en">ANIME <b>HOUSE</b></div>
+      <p>© 2026 Anime House — شارع الملك فيصل، العمرانية، الجيزة</p>
+    </div>
+  </div>
+  <div class="socials">
+    <a href="https://www.instagram.com/the_anime_house">📸 Instagram</a><a href="https://www.facebook.com/TheAnimeHouse">📘 Facebook</a><a href="https://www.tiktok.com/@animehouse.store?is_from_webapp=1&sender_device=pc">🎵 TikTok</a><a href="https://wa.me/20 10 92769278">💬 WhatsApp</a>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
